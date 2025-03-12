@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%- include('./partials/head') %>
+   <link rel="stylesheet" href="/css/style2.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <%- include('./partials/header') %>
+    
+    <body>
+        <div class="basic">
+            <div class="section-1">
+                <h2 class="h2">Section 1 </h2>
+            </div>
+            <div class="clicksection1" class="Introduction">
+                <ul class="Introdropdown1"  type="none">
+                    <li class="common">
+                        <input type="checkbox">
+                        <span>Introduction</span>
+                    </a>
+                    </li>
+                </ul>
+            </div>
+    
+            <div class="section-2">
+                <h2 class="h2">Section 2 - Alphabets </h2>
+            </div>
+            <div class="clicksection2">
+                <ul class="Introdropdown2" type="none">
+                    <li class="common" class="alphabets">
+                        <input type="checkbox">
+                        <span>Alphabets</span>
+                    </li>
+                    <li class="common">
+                        <input type="checkbox">
+                        <span>quizze-1</quizze-1></span>
+                    </li>
+                    <li class="common">
+                        <input type="checkbox">
+                        <span>quizze-2</span>
+                    </li>
+                </ul>
+            </div>
+    
+            <div class="section-3">
+                <h2 class="h2">Section 3 -Numbers </h2>
+            </div>
+            <div class="clicksection3">
+    
+                <ul class="Introdropdown3"  type="none">
+                    <li class="common">
+                        <input type="checkbox">
+                        <span>Numbers</span>
+                    </li>
+                    <li class="common">
+                        <input type="checkbox">
+                        <span>quizze-1</span>
+                    </li>
+                </ul>
+            </div>
+            <script>
+                $(".Introdropdown1,.Introdropdown2,.Introdropdown3").hide();
+                $(".section-1").on("click", function () {
+                    $(".Introdropdown1").toggle();
+                })
+                $(".section-2").on("click", function () {
+                    $(".Introdropdown2").toggle();
+                })
+                $(".section-3").on("click", function () {
+                    $(".Introdropdown3").toggle();
+                })
+                $(document).ready(function(){
+                $(".Introdropdown1").on("click",function (){
+                    window.location.href ='videoplay.ejs';
+                })
+            });
+            </script>
+    </body>
+   
+
+</body>
+</html>

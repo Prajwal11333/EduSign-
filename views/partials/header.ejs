@@ -1,0 +1,85 @@
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <a href="/" id="logo-link">
+                    <img src="/assets/imgs/logo.jpg" alt="EduSign" class="logo-img">
+                    <span class="logo-text">EduSign</span>
+                </a>
+            </div>
+            
+            <nav class="main-nav" id="main-navigation">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="/" class="nav-link" id="nav-home">Home</a></li>
+                    <li class="nav-item"><a href="/tutorials" class="nav-link" id="nav-tutorials">Tutorials</a></li>
+                    <li class="nav-item"><a href="/translator" class="nav-link" id="nav-translator">Translator-tool</a></li>
+                    <li class="nav-item"><a href="/community" class="nav-link" id="nav-community">Community</a></li>
+                    <li class="nav-item"><a href="/aboutus" class="nav-link" id="nav-resources">About-Us</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="search-container">
+                    <button class="search-toggle" id="search-toggle">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="search-dropdown" id="search-dropdown">
+                        <form class="search-form" id="search-form">
+                            <input type="text" placeholder="Search EduSign..." class="search-input" id="search-input">
+                            <button type="submit" class="search-submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="user-menu" id="user-menu">
+                    <a href="/login" class="btn login-btn" id="login-btn">Log In</a>
+                    
+                    <!-- This will be shown when user is logged in (handled by JS) -->
+                    <div class="user-dropdown" id="user-dropdown" style="display: none;">
+                        <button class="user-toggle" id="user-toggle">
+                            <img src="/images/avatars/default.png" alt="User Avatar" class="user-avatar" id="user-avatar">
+                            <span class="user-name" id="user-name">User Name</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu" id="user-dropdown-menu">
+                            <a href="/dashboard" class="dropdown-item">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                            <a href="/profile" class="dropdown-item">
+                                <i class="fas fa-user"></i> Profile
+                            </a>
+                            <a href="/settings" class="dropdown-item">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" id="logout-link">
+                                <i class="fas fa-sign-out-alt"></i> Log Out
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <span class="menu-icon"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-container">
+        <ul class="mobile-nav-list">
+            <li class="mobile-nav-item"><a href="/" class="mobile-nav-link">Home</a></li>
+            <li class="mobile-nav-item"><a href="/tutorials" class="mobile-nav-link">Tutorials</a></li>
+            <li class="mobile-nav-item"><a href="/quizzes" class="mobile-nav-link">Quizzes</a></li>
+            <li class="mobile-nav-item"><a href="/community" class="mobile-nav-link">Community</a></li>
+            <li class="mobile-nav-item"><a href="/resources" class="mobile-nav-link">Resources</a></li>
+            <li class="mobile-nav-item">
+                <a href="/login" class="mobile-nav-link mobile-login-link" id="mobile-login-link">Log In</a>
+            </li>
+        </ul>
+    </div>
+</div>
