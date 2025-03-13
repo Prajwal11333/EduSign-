@@ -71,6 +71,94 @@ app.get("/tutorials/basics/:id", async (req,res) => {
     }
 })
 
+app.get("/tutorials/family-signs", async (req, res) => {
+    try {
+        // By default, load the Family Signs video (004)
+        const response = await axios.get(`${API_URL}/videolib/004`);
+        res.render("family-signs.ejs", {
+            videos: response.data
+        });
+    } catch (error) {
+        console.error("Error fetching default video:", error.message);
+        res.render("family-signs.ejs", {
+            videos: null
+        });
+    }
+});
+
+app.get("/tutorials/family-signs/:id", async (req, res) => {
+    const videoId = req.params.id;
+    try {
+        const response = await axios.get(`${API_URL}/videolib/${videoId}`);
+        
+        // Check if this is an AJAX request
+        const isAjaxRequest = req.xhr || req.headers.accept.indexOf('json') > -1;
+        
+        if (isAjaxRequest) {
+            // Return JSON for AJAX requests
+            res.json({
+                videos: response.data
+            });
+        } else {
+            // Return full page for direct access
+            res.render("family-signs.ejs", {
+                videos: response.data
+            });
+        }
+    } catch(error) {
+        console.error("Error fetching video:", error.message);
+        if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+            res.status(500).json({message: "Error fetching the video"});
+        } else {
+            res.status(500).render("error.ejs", {message: "Error fetching the video"});
+        }
+    }
+});
+
+app.get("/tutorials/emotions-expressions", async (req, res) => {
+    try {
+        // By default, load the Emotions Introduction video (007)
+        const response = await axios.get(`${API_URL}/videolib/005`);
+        res.render("emotions-expressions.ejs", {
+            videos: response.data
+        });
+    } catch (error) {
+        console.error("Error fetching default video:", error.message);
+        res.render("emotions-expressions.ejs", {
+            videos: null
+        });
+    }
+});
+
+app.get("/tutorials/emotions-expressions/:id", async (req, res) => {
+    const videoId = req.params.id;
+    try {
+        const response = await axios.get(`${API_URL}/videolib/${videoId}`);
+        
+        // Check if this is an AJAX request
+        const isAjaxRequest = req.xhr || req.headers.accept.indexOf('json') > -1;
+        
+        if (isAjaxRequest) {
+            // Return JSON for AJAX requests
+            res.json({
+                videos: response.data
+            });
+        } else {
+            // Return full page for direct access
+            res.render("emotions-expressions.ejs", {
+                videos: response.data
+            });
+        }
+    } catch(error) {
+        console.error("Error fetching video:", error.message);
+        if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+            res.status(500).json({message: "Error fetching the video"});
+        } else {
+            res.status(500).render("error.ejs", {message: "Error fetching the video"});
+        }
+    }
+});
+
 app.listen(port, () => {
     console.log("server listening on port" + port);
 })

@@ -34,7 +34,17 @@ const videolib = [
         id: "003",
         title: "Numbers",
         video: encodeURI("/assets/videos/Numbers.mp4"),
-    }
+    },
+    {
+        id: "004",
+        title: "Family Signs",
+        video: encodeURI("/assets/videos/family.mp4"),
+    },
+    {
+        id: "005",
+        title: "Parents Signs",
+        video: encodeURI("/assets/videos/feelings.mp4"),
+    },
 ]
 app.listen(port, () => {
     console.log(`API is running at http://localhost:${port}`);
