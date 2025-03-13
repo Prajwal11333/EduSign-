@@ -30,12 +30,14 @@ body{
 }
 .section-1, .section-2, .section-3 {
     width: 100rem;
+   
 }
 
 .h2 {
     background-color: rgb(199, 212, 206);
     border: 2px solid black;
     height: 50px;
+    padding-left: 20px;
 }
 .common{
     
@@ -46,6 +48,7 @@ body{
 }
  span {
     font-size: large;
+    
  }
 
  .main {
