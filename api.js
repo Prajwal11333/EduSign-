@@ -9,24 +9,33 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 
-app.get("/videolib", (req,res)=>{ {
-        // const vid = videolib.find((v) => v.id === parseInt(req.params.id));
-        // if (!vid) return res.status(404).json({ message: "Post not found" });
-        console.log(videolib);
-        res.json(videolib);
+app.get("/videolib/:id", (req,res)=>{ {
+        const video = videolib.find((v) => v.id === (req.params.id));
+        if (!video) return res.status(404).json({ message: "Post not found" });
+        console.log(video);
+        res.json(video);
     
 }});
 
 
 
-const videolib = 
+const videolib = [
     {
-        id: "01",
+        id: "001",
         title: "Introduction",
         video: encodeURI("/assets/videos/Introduction.mp4"),
-
+    },
+    {
+        id: "002",
+        title: "Alphabets",
+        video: encodeURI("/assets/videos/Alphabets.mp4"),
+    },
+    {
+        id: "003",
+        title: "Numbers",
+        video: encodeURI("/assets/videos/Numbers.mp4"),
     }
-
+]
 app.listen(port, () => {
     console.log(`API is running at http://localhost:${port}`);
   });
