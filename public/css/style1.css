@@ -1198,11 +1198,12 @@
   
   .social-buttons {
     display: flex;
-    gap: 1.6rem;
+   
   }
   
   .social-btn {
     flex: 1;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
