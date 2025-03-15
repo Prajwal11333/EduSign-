@@ -241,23 +241,6 @@
     gap: 2rem;
   }
   
-  .search-container {
-    position: relative;
-  }
-  
-  .search-toggle {
-    background: none;
-    border: none;
-    color: var(--text-medium);
-    font-size: 1.8rem;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  }
-  
-  .search-toggle:hover {
-    color: var(--primary-color);
-  }
-  
   .search-dropdown {
     position: absolute;
     top: 100%;

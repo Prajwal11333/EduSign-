@@ -13,25 +13,12 @@
                     <li class="nav-item"><a href="/" class="nav-link" id="nav-home">Home</a></li>
                     <li class="nav-item"><a href="/tutorials" class="nav-link" id="nav-tutorials">Tutorials</a></li>
                     <li class="nav-item"><a href="/translator" class="nav-link" id="nav-translator">Translator-tool</a></li>
-                    <li class="nav-item"><a href="/community" class="nav-link" id="nav-community">Community</a></li>
                     <li class="nav-item"><a href="/aboutus" class="nav-link" id="nav-resources">About-Us</a></li>
+                    <!-- Added logged-in-only navigation items -->
+                    <li class="nav-item logged-in-only" style="display: none;"><a href="/dashboard" class="nav-link" id="nav-dashboard">Dashboard</a></li>
+                    <li class="nav-item logged-in-only" style="display: none;"><a href="/my-documents" class="nav-link" id="nav-documents">My Documents</a></li>
                 </ul>
             </nav>
-            
-            <div class="header-actions">
-                <div class="search-container">
-                    <button class="search-toggle" id="search-toggle">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <div class="search-dropdown" id="search-dropdown">
-                        <form class="search-form" id="search-form">
-                            <input type="text" placeholder="Search EduSign..." class="search-input" id="search-input">
-                            <button type="submit" class="search-submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
                 
                 <div class="user-menu" id="user-menu">
                     <a href="/login" class="btn login-btn" id="login-btn">Log In</a>
@@ -74,9 +61,11 @@
         <ul class="mobile-nav-list">
             <li class="mobile-nav-item"><a href="/" class="mobile-nav-link">Home</a></li>
             <li class="mobile-nav-item"><a href="/tutorials" class="mobile-nav-link">Tutorials</a></li>
-            <li class="mobile-nav-item"><a href="/quizzes" class="mobile-nav-link">Quizzes</a></li>
-            <li class="mobile-nav-item"><a href="/community" class="mobile-nav-link">Community</a></li>
-            <li class="mobile-nav-item"><a href="/resources" class="mobile-nav-link">Resources</a></li>
+            <li class="mobile-nav-item"><a href="/translator" class="mobile-nav-link">Translator</a></li>
+            <li class="mobile-nav-item"><a href="/aboutus" class="mobile-nav-link">About Us</a></li>
+            <!-- Added logged-in-only mobile navigation items -->
+            <li class="mobile-nav-item logged-in-only" style="display: none;"><a href="/dashboard" class="mobile-nav-link">Dashboard</a></li>
+            <li class="mobile-nav-item logged-in-only" style="display: none;"><a href="/my-documents" class="mobile-nav-link">My Documents</a></li>
             <li class="mobile-nav-item">
                 <a href="/login" class="mobile-nav-link mobile-login-link" id="mobile-login-link">Log In</a>
             </li>
