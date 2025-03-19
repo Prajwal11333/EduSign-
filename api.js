@@ -10,11 +10,6 @@ app.use(bodyParser.json());
 
 
 app.get("/videolib/:id", (req, res) => {
-    // Check if user is authenticated (you'll need to implement this middleware)
-    if (!req.user) {
-        return res.status(401).json({ message: "Authentication required" });
-    }
-    
     const video = videolib.find((v) => v.id === (req.params.id));
     if (!video) return res.status(404).json({ message: "Video not found" });
     console.log(video);
