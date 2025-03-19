@@ -23,7 +23,7 @@ const loginBtn = document.getElementById('login-btn');
 const loggedInOnlyElements = document.querySelectorAll('.logged-in-only');
 
 // Check if on the tutorials page
-const isTutorialsPage = window.location.pathname.includes('/tutorials');
+const isTutorialsPage = window.location.pathname.includes('/baiscs');
 
 // Function to update UI based on authentication state
 function updateUIForAuthState(user) {
@@ -43,7 +43,7 @@ function updateUIForAuthState(user) {
         createUserProfileMenu(user);
         
         // Enable video access if on tutorials page
-        if (isTutorialsPage || window.location.pathname.includes('/videolib')) {
+        if (isTutorialsPage || window.location.pathname.includes('/basics')) {
             enableVideoAccess();
         }
 
@@ -67,7 +67,7 @@ function updateUIForAuthState(user) {
         }
         
         // Disable video access if on tutorials page
-        if (isTutorialsPage || window.location.pathname.includes('/videolib')) {
+        if (isTutorialsPage || window.location.pathname.includes('/basics')) {
             disableVideoAccess();
         }
 
@@ -238,7 +238,7 @@ function attachVideoClickHandlers() {
         link.addEventListener('click', function(e) {
             const videoId = this.getAttribute('data-id');
             if (videoId) {
-                window.location.href = `/videolib/${videoId}`;
+                window.location.href = `/basics/${videoId}`;
             }
         });
     });
