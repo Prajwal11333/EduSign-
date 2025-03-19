@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 
 const app = express();
 const port = 4000;
-
+const PYTHON_API_URL = "http://localhost:5000";
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -14,6 +14,14 @@ app.get("/videolib/:id", (req, res) => {
     if (!video) return res.status(404).json({ message: "Video not found" });
     console.log(video);
     res.json(video);
+});
+app.post("/predict", async (req, res) => {
+    try {
+        const response = await axios.post(`${PYTHON_API_URL}/predict`, req.body);
+        res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching prediction", error: error.message });
+    }
 });
 
 
