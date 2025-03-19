@@ -1,12 +1,16 @@
 import express from "express";
 import bodyParser from "body-parser";
+import multer from "multer";
+import axios from "axios";
+import FormData from "form-data";
 
 const app = express();
 const port = 4000;
-const PYTHON_API_URL = "http://localhost:5000";
+const PYTHON_API_URL = "http://localhost:5000/predict";
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
 
 
 app.get("/videolib/:id", (req, res) => {
@@ -15,15 +19,37 @@ app.get("/videolib/:id", (req, res) => {
     console.log(video);
     res.json(video);
 });
-app.post("/predict", async (req, res) => {
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+app.post("/predict", upload.single("image"), async (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ error: "No image file received" });
+    }
+
     try {
-        const response = await axios.post(`${PYTHON_API_URL}/predict`, req.body);
+        console.log("Sending image to Flask backend...");
+
+        const formData = new FormData();
+        formData.append("image", req.file.buffer, {
+            filename: "frame.jpg",
+            contentType: "image/jpeg",
+        });
+
+        const response = await axios.post(PYTHON_API_URL, formData, {
+            headers: {
+                ...formData.getHeaders(),
+            },
+        });
+
+        console.log("Flask Response:", response.data);
         res.json(response.data);
     } catch (error) {
-        res.status(500).json({ message: "Error fetching prediction", error: error.message });
+        console.error("Error in API:", error.message);
+        res.status(500).json({ message: "Failed to process image", error: error.message });
     }
 });
-
 
 
 const videolib = [

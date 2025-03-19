@@ -1,6 +1,8 @@
 import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
+import multer from "multer";
+import FormData from "form-data";
 
 const app = express();
 const port = 3000;
@@ -9,6 +11,9 @@ const API_URL = "http://localhost:4000";
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 app.get("/", (req, res) => {
     res.render('home.ejs');
@@ -156,6 +161,35 @@ app.get("/tutorials/emotions-expressions/:id", async (req, res) => {
         } else {
             res.status(500).render("error.ejs", {message: "Error fetching the video"});
         }
+    }
+});
+
+app.post("/predict", upload.single("image"), async (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ error: "No image file received" });
+    }
+
+    try {
+        console.log("Forwarding image to API at", API_URL + "/predict");
+
+        // Convert Buffer to Readable Stream
+        const formData = new FormData();
+        formData.append("image", req.file.buffer, {
+            filename: "frame.jpg",
+            contentType: "image/jpeg",
+        });
+
+        const response = await axios.post(`${API_URL}/predict`, formData, {
+            headers: {
+                ...formData.getHeaders(),
+            },
+        });
+
+        console.log("API Response:", response.data);
+        res.json(response.data);
+    } catch (error) {
+        console.error("Error forwarding prediction request:", error.message);
+        res.status(500).json({ message: "Internal Server Error", error: error.message });
     }
 });
 

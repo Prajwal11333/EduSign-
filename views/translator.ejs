@@ -1,46 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Language Recognition</title>
-    
-    <style>
-        #video-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 50px;
-        }
-        video {
-            width: 100%;
-            max-width: 600px;
-            border: 2px solid #4CAF50;
-            border-radius: 10px;
-        }
-        button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <title>Sign Language Translator</title>
 </head>
 <body>
-    <div id="video-container">
-        <video id="camera-feed" autoplay></video>
-        <button onclick="startCamera()">Start Camera</button>
-        <p id="predictionResult">Prediction will appear here...</p>
-    </div>
+    <h1>ASL Sign Language Translator</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+    <img id="preview" width="300" height="200"/> <!-- Added Preview -->
+    <p><strong>Predicted Sign:</strong> <span id="prediction">Waiting...</span></p>
 
-   
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const predictionText = document.getElementById('prediction');
+        const preview = document.getElementById('preview');
+
+        // Start Camera
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                video.srcObject = stream;
+            })
+            .catch((error) => console.error("Error accessing camera:", error));
+
+        // Capture Image and Send to Backend
+        function captureAndSend() {
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob((blob) => {
+                const formData = new FormData();
+                formData.append("image", blob, "frame.jpg");
+
+                // Show image preview
+                const imgURL = URL.createObjectURL(blob);
+                preview.src = imgURL;
+
+                fetch("/predict", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Prediction:", data);
+                    predictionText.innerText = data.prediction || "No sign detected";
+                })
+                .catch(error => console.error("Error:", error));
+            }, "image/jpeg");
+        }
+    
+    function captureAndSend() {
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        canvas.toBlob((blob) => {
+            const formData = new FormData();
+            formData.append("image", blob, "frame.jpg");
+
+            // Show image preview
+            const imgURL = URL.createObjectURL(blob);
+            preview.src = imgURL;
+
+            fetch("http://localhost:3000/predict", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Prediction:", data);
+                predictionText.innerText = data.prediction || "No sign detected";
+            })
+            .catch(error => console.error("Error:", error));
+        }, "image/jpeg", 0.95);  // <-- Increase image quality
+    }
+
+
+
+        // Capture frames every 1 second
+        setInterval(captureAndSend, 1000);
+    </script>
 </body>
 </html>
