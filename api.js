@@ -9,13 +9,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 
-app.get("/videolib/:id", (req,res)=>{ {
-        const video = videolib.find((v) => v.id === (req.params.id));
-        if (!video) return res.status(404).json({ message: "Post not found" });
-        console.log(video);
-        res.json(video);
+// In your index.js or api.js file
+app.get("/videolib/:id", (req, res) => {
+    // Get the video
+    const video = videolib.find((v) => v.id === (req.params.id));
+    if (!video) return res.status(404).json({ message: "Video not found" });
     
-}});
+    // We'll still return the video data, but the client-side code will handle access control
+    res.json(video);
+});
 
 
 
