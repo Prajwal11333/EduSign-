@@ -41,6 +41,7 @@
         </div>
         <%- include('./partials/footer') %>
             <script>
+                // dopdown is used in the jquery formate of js
                 $(".Introdropdown1,.Introdropdown2,.Introdropdown3").hide();
                 $(".section-1").on("click", function () {
                     $(".Introdropdown1").toggle();
@@ -55,7 +56,7 @@
                 $(document).ready(function () {
                     $(".common").on("click", function () {
                         const videoId = $(this).data("id");
-
+//   the AJAX request is handling the asynchronous loading of video content without requiring a full page reload. 
                         $.ajax({
                             url: `/tutorials/emotions-expressions/${videoId}`,
                             type: 'GET',

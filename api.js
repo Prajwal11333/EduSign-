@@ -32,7 +32,7 @@ const videolib = [
     {
         id: "003",
         title: "Numbers",
-        video: encodeURI("/assets/videos/Numbers.mp4"),
+        video: encodeURI("/assets/videos/Numbers1.mp4"),
     },
     {
         id: "004",

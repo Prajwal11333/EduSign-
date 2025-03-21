@@ -6,6 +6,11 @@ const app = express();
 const port = 3000;
 const API_URL = "http://localhost:4000";
 
+// The application uses axios to fetch video data from another API service running at http://localhost:4000
+// The code handles both direct page access and AJAX requests:
+// For AJAX requests, it returns JSON data
+// Body-parser is middleware for Express.js that parses incoming request bodies: as it will convert into json object into js
+
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -30,6 +35,7 @@ app.get("/about-us",(req,res)=>{
     res.render("about-us.ejs")
 })
 
+// video data fetching from basic.ejs as try and catch method
 app.get("/tutorials/basics", async (req, res) => {
     try {
         // By default, load the Introduction video (001)

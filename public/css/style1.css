@@ -262,7 +262,6 @@
   }
   
   .nav-link {
-    /* color: var(--text-medium); */
     color: rgb(152, 185, 249);
     font-weight: 600;
     transition: color 0.3s ease;
@@ -1714,20 +1713,20 @@
 }
 
 /* Fix for header on all screen sizes when scrolling */
-.site-header {
+/* .site-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-}
+} */
 
 /* Ensure content doesn't hide under fixed header */
-body {
+/* body {
   padding-top: var(--header-height, 80px);
-}
+} */
 
 /* Ensure buttons are properly sized for touch */
-.btn {
+/* .btn {
   min-height: 4.4rem;
-}
+} */
