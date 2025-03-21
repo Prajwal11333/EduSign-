@@ -26,6 +26,10 @@ app.get("/login", (req, res) => {
 app.get("/translator", (req, res) => {
     res.render("translator.ejs");
 })
+app.get("/about-us",(req,res)=>{
+    res.render("about-us.ejs")
+})
+
 app.get("/tutorials/basics", async (req, res) => {
     try {
         // By default, load the Introduction video (001)
